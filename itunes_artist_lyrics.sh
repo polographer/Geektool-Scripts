@@ -1,5 +1,10 @@
 #!/bin/sh
 # one to rule them all !
+# if you had adobe master collection, this installs some plugins
+# to osascript but only for 32 bits, if you are running on 64 bits
+# the osascript will simply break, the arch parameter, is to tell osascript
+# to run on 32 bits no matter what kernel are you running
+# first it gets the artist name and song title, later the lyrics
 arch -i386 osascript << EOF 
 if appIsRunning("iTunes") then
 	tell application "iTunes"
