@@ -6,11 +6,17 @@
 # to run on 32 bits no matter what kernel are you running
 # this only gets the lyrics
 arch -i386 osascript << EOT 
-tell application "iTunes"
-	if player state is playing then
-		set trk to current track
-	end if
-	set the_lyrics to trk's lyrics
-	return the_lyrics
-end tell
+if appIsRunning("iTunes") then 	
+	tell application "iTunes"
+		if player state is playing then
+			set trk to current track
+			set the_lyrics to trk's lyrics
+			return the_lyrics
+		end if
+	end tell
+end if
+on appIsRunning(appName)
+	tell application "System Events" to (name of processes) contains appName
+end appIsRunning
+	
 EOT
